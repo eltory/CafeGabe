@@ -1,0 +1,16 @@
+spring:
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
+  social:
+    kakao:
+      client_id: 75b16035c579ec5f76fd49e4cc1ea88c
+      redirect: /social/login/kakao
+      url:
+        login: https://kauth.kakao.com/oauth/authorize
+        token: https://kauth.kakao.com/oauth/token
+        profile: https://kapi.kakao.com/v2/user/me
+  jwt:
+    secret: Hfa#24h!@$f9)1j
+  url:
+    base: http://localhost:8080
