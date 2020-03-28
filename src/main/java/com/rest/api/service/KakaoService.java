@@ -49,7 +49,7 @@ public class KakaoService {
 	public KakaoProfile getKakaoProfile(String accessToken) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-		headers.set("Authorization", "Bearer" + accessToken);
+		headers.set("Authorization", "Bearer " + accessToken);
 		
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(null, headers);
 		try {

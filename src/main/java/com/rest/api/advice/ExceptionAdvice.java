@@ -38,7 +38,7 @@ public class ExceptionAdvice {
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public CommonResult defaultException(HttpServletRequest request, Exception e) {
-		return responseService.getFailResult(Integer.valueOf(getMessage("unKnown.code")), getMessage("unKnown.msg"));
+		return responseService.getFailResult(Integer.valueOf(getMessage("unKnown.code")), getMessage("unKnown.msg") + "(" + e.getMessage() + ")");
 	}
 
 	/**
@@ -47,6 +47,8 @@ public class ExceptionAdvice {
 	 * @param e
 	 * @return
 	 */
+	@ExceptionHandler(PUserNotFoundException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public CommonResult userNotFoundException(HttpServletRequest request, PUserNotFoundException e) {
 		return responseService.getFailResult(Integer.valueOf(getMessage("userNotFound.code")),
 				getMessage("userNotFound.msg"));
@@ -58,6 +60,8 @@ public class ExceptionAdvice {
 	 * @param e
 	 * @return
 	 */
+	@ExceptionHandler(PCommunicationException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public CommonResult communicationException(HttpServletRequest request, PCommunicationException e) {
 		return responseService.getFailResult(Integer.valueOf(getMessage("communicationError.code")),
 				getMessage("communicationError.msg"));
@@ -69,6 +73,8 @@ public class ExceptionAdvice {
 	 * @param e
 	 * @return
 	 */
+	@ExceptionHandler(PUserExistException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public CommonResult communicationException(HttpServletRequest request, PUserExistException e) {
 		return responseService.getFailResult(Integer.valueOf(getMessage("existingUser.code")),
 				getMessage("existingUser.msg"));
