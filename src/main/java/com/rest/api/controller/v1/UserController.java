@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
  * @author lsh
  *
  */
-@Api (tags = {"1. User"})
+@Api (tags = {"2. User"})
 @RequiredArgsConstructor
 @RestController
 @RequestMapping (value = "/v1")

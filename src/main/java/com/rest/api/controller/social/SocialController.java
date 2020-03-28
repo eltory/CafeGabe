@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
  * @author lsh
  *
  */
-@Api (tags = {"2. Social"})
+@Api (tags = {"3. Social"})
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/social/login")
