@@ -37,8 +37,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	public void configure(WebSecurity web) {
-//		web.ignoring().antMatchers("/v2/api-docs", "/swagger-resource/**", "/swagger-ui.html", "/webjars/**",
-//				"/swagger/**");
+		web.ignoring().antMatchers("/v2/api-docs", "/swagger-resource/**", "/swagger-ui.html", "/webjars/**",
+				"/swagger/**");
 	}
 
 	/**
@@ -46,11 +46,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http.httpBasic().disable().csrf().disable().sessionManagement()
-//				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-//				.antMatchers("/*/signin", "/*/signup").permitAll().antMatchers(HttpMethod.GET, "hello/**")
-//				.permitAll().anyRequest().hasRole("USER").and().addFilterBefore(
-//						new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+		http
+		.httpBasic().disable()	// rest api
+		.csrf().disable()		// rest api
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)	// jwt token base
+		.and()
+		.authorizeRequests()	// next request
+		.antMatchers("/*/signin", "/*/signup").permitAll()	// register, sign in for anyone
+		.antMatchers(HttpMethod.GET, "hello/**").permitAll()
+		.anyRequest().permitAll();
+//		.anyRequest().hasRole("USER")
+//		.and()
+//		.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 	}
 
 }
