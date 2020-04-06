@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.rest.api.advice.exception.PCommunicationException;
-import com.rest.api.advice.exception.PUserExistException;
-import com.rest.api.advice.exception.PUserNotFoundException;
+import com.rest.api.advice.exception.CommunicationException;
+import com.rest.api.advice.exception.UserExistException;
+import com.rest.api.advice.exception.UserNotFoundException;
 import com.rest.api.model.response.CommonResult;
 import com.rest.api.service.ResponseService;
 
@@ -47,9 +47,9 @@ public class ExceptionAdvice {
 	 * @param e
 	 * @return
 	 */
-	@ExceptionHandler(PUserNotFoundException.class)
+	@ExceptionHandler(UserNotFoundException.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public CommonResult userNotFoundException(HttpServletRequest request, PUserNotFoundException e) {
+	public CommonResult userNotFoundException(HttpServletRequest request, UserNotFoundException e) {
 		return responseService.getFailResult(Integer.valueOf(getMessage("userNotFound.code")),
 				getMessage("userNotFound.msg"));
 	}
@@ -60,9 +60,9 @@ public class ExceptionAdvice {
 	 * @param e
 	 * @return
 	 */
-	@ExceptionHandler(PCommunicationException.class)
+	@ExceptionHandler(CommunicationException.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public CommonResult communicationException(HttpServletRequest request, PCommunicationException e) {
+	public CommonResult communicationException(HttpServletRequest request, CommunicationException e) {
 		return responseService.getFailResult(Integer.valueOf(getMessage("communicationError.code")),
 				getMessage("communicationError.msg"));
 	}
@@ -73,9 +73,9 @@ public class ExceptionAdvice {
 	 * @param e
 	 * @return
 	 */
-	@ExceptionHandler(PUserExistException.class)
+	@ExceptionHandler(UserExistException.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public CommonResult communicationException(HttpServletRequest request, PUserExistException e) {
+	public CommonResult communicationException(HttpServletRequest request, UserExistException e) {
 		return responseService.getFailResult(Integer.valueOf(getMessage("existingUser.code")),
 				getMessage("existingUser.msg"));
 	}

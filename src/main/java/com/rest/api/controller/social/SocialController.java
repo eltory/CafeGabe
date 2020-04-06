@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.rest.api.service.KakaoService;
+import com.rest.api.service.social.KakaoService;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;

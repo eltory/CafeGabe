@@ -1,4 +1,4 @@
-package com.rest.api.entity;
+package com.rest.api.entity.user;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -112,3 +112,4 @@ public class User implements UserDetails {
 		return this.roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 	}	
 }
+

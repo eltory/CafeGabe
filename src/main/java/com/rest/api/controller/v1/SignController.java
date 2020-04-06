@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rest.api.advice.exception.PCommunicationException;
-import com.rest.api.advice.exception.PUserNotFoundException;
+import com.rest.api.advice.exception.CommunicationException;
+import com.rest.api.advice.exception.UserNotFoundException;
 import com.rest.api.config.security.JwtTokenProvider;
-import com.rest.api.entity.User;
+import com.rest.api.entity.user.User;
 import com.rest.api.model.response.CommonResult;
 import com.rest.api.model.response.SingleResult;
 import com.rest.api.model.social.kakao.KakaoProfile;
 import com.rest.api.repository.UserRepository;
-import com.rest.api.service.KakaoService;
+import com.rest.api.service.social.KakaoService;
 import com.rest.api.service.ResponseService;
 
 import io.swagger.annotations.Api;
@@ -57,7 +57,7 @@ public class SignController {
 
 		KakaoProfile profile = kakaoService.getKakaoProfile(accessToken);
 		User user = userRepository.findByUidAndProvider(String.valueOf(profile.getId()), provider)
-				.orElseThrow(PCommunicationException::new);
+				.orElseThrow(CommunicationException::new);
 		return responseService
 				.getSingleResult(jwtTokenProvider.createToken(String.valueOf(user.getId()), user.getRoles()));
 	}
@@ -78,7 +78,7 @@ public class SignController {
 		KakaoProfile profile = kakaoService.getKakaoProfile(accessToken);
 		Optional<User> user = userRepository.findByUidAndProvider(String.valueOf(profile.getId()), provider);
 		if (user.isPresent())
-			throw new PUserNotFoundException();
+			throw new UserNotFoundException();
 		userRepository.save(User.builder().uid(String.valueOf(profile.getId())).provider(provider).name(name)
 				.roles(Collections.singletonList("ROLE_USER")).build());
 		return responseService.getSuccessResult();

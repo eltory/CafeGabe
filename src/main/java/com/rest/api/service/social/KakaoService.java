@@ -1,4 +1,4 @@
-package com.rest.api.service;
+package com.rest.api.service.social;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -13,17 +13,17 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
-import com.rest.api.advice.exception.PCommunicationException;
+import com.rest.api.advice.exception.CommunicationException;
 import com.rest.api.model.social.kakao.KakaoProfile;
 import com.rest.api.model.social.kakao.RetKakaoAuth;
 
 import lombok.RequiredArgsConstructor;
 
 /**
- * 
- * @author lsh
- *
- */
+* 
+* @author lsh
+*
+*/
 @RequiredArgsConstructor
 @Service
 public class KakaoService {
@@ -57,9 +57,9 @@ public class KakaoService {
 			if(response.getStatusCode() == HttpStatus.OK)
 				return gson.fromJson(response.getBody(), KakaoProfile.class);
 		} catch (Exception e) {
-			throw new PCommunicationException();
+			throw new CommunicationException();
 		}
-		throw new PCommunicationException();
+		throw new CommunicationException();
 	}
 	
 	/**
