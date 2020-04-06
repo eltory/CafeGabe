@@ -1,5 +1,9 @@
 package com.rest.api.repository;
 
-public class CafeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.rest.api.entity.cafe.Cafe;
+
+public interface CafeRepository extends JpaRepository<Cafe, Long>{
 
 }

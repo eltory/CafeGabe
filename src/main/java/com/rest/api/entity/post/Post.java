@@ -1,5 +1,5 @@
-package com.rest.api.entity.post;
-
-public class Post {
-
-}
+//package com.rest.api.entity.post;
+//
+//public class Post {
+//
+//}
