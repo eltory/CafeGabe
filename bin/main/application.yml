@@ -14,7 +14,9 @@ spring:
         profile: https://kapi.kakao.com/v2/user/me
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://aztqncptoajzyw:46e62a0d10552d424cce91fde5734d281c89bbf350154fa95792118b0631548f@ec2-52-87-58-157.compute-1.amazonaws.com:5432/dddsktdf461hcf
+    url: jdbc:postgresql://ec2-52-87-58-157.compute-1.amazonaws.com:5432/dddsktdf461hcf
+    username: aztqncptoajzyw
+    password: 46e62a0d10552d424cce91fde5734d281c89bbf350154fa95792118b0631548f
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
