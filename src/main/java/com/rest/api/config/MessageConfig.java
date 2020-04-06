@@ -17,7 +17,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import net.rakugakibox.util.YamlResourceBundle;
 
 @Configuration
-public class MessageConfiguration implements WebMvcConfigurer {
+public class MessageConfig implements WebMvcConfigurer {
 
 	/**
 	 * @apiNote Set session locale
