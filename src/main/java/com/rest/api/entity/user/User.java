@@ -34,8 +34,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "user")
+@Entity(name = "user")
+//@Table(name = "user")
 public class User implements UserDetails {
 
 	@Id
