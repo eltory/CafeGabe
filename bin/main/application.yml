@@ -1,6 +1,10 @@
 server:
   port: 8080
+
+---
+
 spring: 
+  profiles: server
   messages:
     basename: i18n
     encoding: UTF-8
