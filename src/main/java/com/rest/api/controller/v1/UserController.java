@@ -2,6 +2,7 @@ package com.rest.api.controller.v1;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,8 +38,11 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping (value = "/v1")
 public class UserController {
 	
+	@Autowired
 	private final UserService userService;
+	@Autowired
 	private final ResponseService responseService;
+	@Autowired
 	private final UserRepository userRepository;
 
 	/**
