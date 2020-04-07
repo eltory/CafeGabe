@@ -1,10 +1,37 @@
 server:
   port: 8080
+#spring: 
+#  profiles: local
+#  messages:
+#    basename: i18n
+#    encoding: UTF-8
+#  social:
+#    kakao:
+#      client_id: 75b16035c579ec5f76fd49e4cc1ea88c
+#      redirect: /social/login/kakao
+#      url:
+#        login: https://kauth.kakao.com/oauth/authorize
+#        token: https://kauth.kakao.com/oauth/token
+#        profile: https://kapi.kakao.com/v2/user/me
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:mem:local_db
+#    username: sa
+#    password: 
+#    platform: h2
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#  jwt:
+#    secret: Hfa#24h!@$f9)1j^
+#  url:
+#    base: https://pl-api-server.herokuapp.com
 
 ---
 
 spring: 
-  profiles: server
   messages:
     basename: i18n
     encoding: UTF-8
