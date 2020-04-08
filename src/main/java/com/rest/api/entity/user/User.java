@@ -1,5 +1,6 @@
 package com.rest.api.entity.user;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -35,7 +36,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "cuser")
+@Table(name = "user_normal")
 public class User implements UserDetails {
 
 	@Id
@@ -54,6 +55,15 @@ public class User implements UserDetails {
 	
 	@Column (length = 100)
 	private String provider;
+	
+	@Column
+	private LocalDateTime registeredAt;
+	
+	@Column
+	private LocalDateTime modifiedAt;
+	
+	@Column
+	private LocalDateTime lastLoginAt;
 
 	@ElementCollection (fetch = FetchType.EAGER)
 	@Builder.Default

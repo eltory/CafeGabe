@@ -83,4 +83,17 @@ public class SignController {
 				.roles(Collections.singletonList("ROLE_USER")).build());
 		return responseService.getSuccessResult();
 	}
+	
+	@ApiOperation(value = "Delete by user token", notes = "Register user")
+	@PostMapping(value = "/sign-delete/{provider}")
+	public CommonResult signDeleteByProvider(
+			@ApiParam(value = "provider", required = true, defaultValue = "kakao") @PathVariable String provider,
+			@ApiParam(value = "access_token", required = true) @RequestParam String accessToken) {
+		KakaoProfile profile = kakaoService.getKakaoProfile(accessToken);
+		Optional<User> user = userRepository.findByUidAndProvider(String.valueOf(profile.getId()), provider);
+		if (user.isPresent())
+			throw new UserNotFoundException();
+		userRepository.deleteById(profile.getId());
+		return responseService.getSuccessResult();
+	}
 }
