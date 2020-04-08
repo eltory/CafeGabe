@@ -1,6 +1,8 @@
 package com.rest.api.controller.v1;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -82,13 +84,15 @@ public class SignController {
 		Optional<User> user = userRepository.findByUidAndProvider(String.valueOf(profile.getId()), provider);
 		if (user.isPresent())
 			throw new UserNotFoundException();
+		ZonedDateTime curTime = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
+		LocalDateTime localCulTime = curTime.toLocalDateTime();
 		userRepository.save(User.builder()
 				.uid(String.valueOf(profile.getId()))
 				.provider(provider)
 				.name(name)
-				.registeredAt(LocalDateTime.now())
-				.lastLoginAt(LocalDateTime.now())
-				.modifiedAt(LocalDateTime.now())
+				.registeredAt(localCulTime)
+				.lastLoginAt(localCulTime)
+				.modifiedAt(localCulTime)
 				.roles(Collections.singletonList("ROLE_USER")).build());
 		return responseService.getSuccessResult();
 	}
