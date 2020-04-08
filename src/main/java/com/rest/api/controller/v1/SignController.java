@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,7 +86,7 @@ public class SignController {
 	}
 	
 	@ApiOperation(value = "Delete by user token", notes = "Register user")
-	@PostMapping(value = "/sign-delete/{provider}")
+	@DeleteMapping(value = "/sign-delete/{provider}")
 	public CommonResult signDeleteByProvider(
 			@ApiParam(value = "provider", required = true, defaultValue = "kakao") @PathVariable String provider,
 			@ApiParam(value = "access_token", required = true) @RequestParam String accessToken) {
