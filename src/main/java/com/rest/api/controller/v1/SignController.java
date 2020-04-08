@@ -1,5 +1,6 @@
 package com.rest.api.controller.v1;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,10 +82,19 @@ public class SignController {
 		Optional<User> user = userRepository.findByUidAndProvider(String.valueOf(profile.getId()), provider);
 		if (user.isPresent())
 			throw new UserNotFoundException();
-		userRepository.save(User.builder().uid(String.valueOf(profile.getId())).provider(provider).name(name)
+		userRepository.save(User.builder()
+				.uid(String.valueOf(profile.getId()))
+				.provider(provider)
+				.name(name)
+				.registeredAt(LocalDateTime.now())
+				.lastLoginAt(LocalDateTime.now())
+				.modifiedAt(LocalDateTime.now())
 				.roles(Collections.singletonList("ROLE_USER")).build());
 		return responseService.getSuccessResult();
 	}
+	
+	
+	
 	
 	/**
 	 * 
@@ -91,7 +102,7 @@ public class SignController {
 	 * @param accessToken
 	 * @return
 	 */
-	@ApiOperation(value = "Delete by user token", notes = "Register user")
+	@ApiOperation(value = "Delete by user token", notes = "Delete user")
 	@DeleteMapping(value = "/sign-delete/{provider}")
 	public CommonResult signDeleteByProvider(
 			@ApiParam(value = "provider", required = true, defaultValue = "kakao") @PathVariable String provider,
