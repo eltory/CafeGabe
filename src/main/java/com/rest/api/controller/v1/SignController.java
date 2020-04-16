@@ -97,9 +97,6 @@ public class SignController {
 		return responseService.getSuccessResult();
 	}
 	
-	
-	
-	
 	/**
 	 * 
 	 * @param provider
